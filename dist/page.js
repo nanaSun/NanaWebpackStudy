@@ -81,21 +81,10 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/page1.js");
 /******/ })
 /************************************************************************/
 /******/ ({
-
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("__webpack_require__(/*! ./page1.js */ \"./src/page1.js\")\r\nlet str=\"index\"\r\nconsole.log(str)\n\n//# sourceURL=webpack:///./src/index.js?");
-
-/***/ }),
 
 /***/ "./src/page1.js":
 /*!**********************!*\
