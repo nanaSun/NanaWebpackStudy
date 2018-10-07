@@ -86,6 +86,50 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/file-loader/dist/cjs.js!./src/index.css":
+/*!**************************************************************!*\
+  !*** ./node_modules/file-loader/dist/cjs.js!./src/index.css ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("module.exports = __webpack_require__.p + \"35392116cc24157679e36a22885079b8.css\";\n\n//# sourceURL=webpack:///./src/index.css?./node_modules/file-loader/dist/cjs.js");
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/addStyleUrl.js":
+/*!******************************************************!*\
+  !*** ./node_modules/style-loader/lib/addStyleUrl.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("/* WEBPACK VAR INJECTION */(function(module) {/*\n\tMIT License http://www.opensource.org/licenses/mit-license.php\n\tAuthor Tobias Koppers @sokra\n*/\n\nfunction addAttrs (element, attrs) {\n\tObject.keys(attrs).forEach(function (key) {\n\t\telement.setAttribute(key, attrs[key]);\n\t});\n}\n\nmodule.exports = function addStyleUrl (url, options) {\n\tif (typeof DEBUG !== \"undefined\" && DEBUG) {\n\t\tif (typeof document !== \"object\") throw new Error(\"The style-loader cannot be used in a non-browser environment\");\n\t}\n\n\toptions = options || {};\n\n\toptions.attrs = typeof options.attrs === \"object\" ? options.attrs : {};\n\n\toptions.hmr = typeof options.hmr === 'undefined' ? true : options.hmr;\n\n\tvar link = document.createElement(\"link\");\n\n\tlink.rel = \"stylesheet\";\n\tlink.type = \"text/css\";\n\tlink.href = url;\n\n\taddAttrs(link, options.attrs);\n\n\tvar head = document.getElementsByTagName(\"head\")[0];\n\n\thead.appendChild(link);\n\n\tif (options.hmr && module.hot) {\n\t\treturn function(url) {\n\t\t\tif(typeof url === \"string\") {\n\t\t\t\tlink.href = url;\n\t\t\t} else {\n\t\t\t\thead.removeChild(link);\n\t\t\t}\n\t\t};\n\t}\n}\n\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/module.js */ \"./node_modules/webpack/buildin/module.js\")(module)))\n\n//# sourceURL=webpack:///./node_modules/style-loader/lib/addStyleUrl.js?");
+
+/***/ }),
+
+/***/ "./node_modules/webpack/buildin/module.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/module.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = function(module) {\r\n\tif (!module.webpackPolyfill) {\r\n\t\tmodule.deprecate = function() {};\r\n\t\tmodule.paths = [];\r\n\t\t// module.parent = undefined by default\r\n\t\tif (!module.children) module.children = [];\r\n\t\tObject.defineProperty(module, \"loaded\", {\r\n\t\t\tenumerable: true,\r\n\t\t\tget: function() {\r\n\t\t\t\treturn module.l;\r\n\t\t\t}\r\n\t\t});\r\n\t\tObject.defineProperty(module, \"id\", {\r\n\t\t\tenumerable: true,\r\n\t\t\tget: function() {\r\n\t\t\t\treturn module.i;\r\n\t\t\t}\r\n\t\t});\r\n\t\tmodule.webpackPolyfill = 1;\r\n\t}\r\n\treturn module;\r\n};\r\n\n\n//# sourceURL=webpack:///(webpack)/buildin/module.js?");
+
+/***/ }),
+
+/***/ "./src/index.css":
+/*!***********************!*\
+  !*** ./src/index.css ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var update = __webpack_require__(/*! ../node_modules/style-loader/lib/addStyleUrl.js */ \"./node_modules/style-loader/lib/addStyleUrl.js\")(\n  __webpack_require__(/*! !../node_modules/file-loader/dist/cjs.js!./index.css */ \"./node_modules/file-loader/dist/cjs.js!./src/index.css\")\n, {\"hmr\":true});\nif(false) {}\n\n//# sourceURL=webpack:///./src/index.css?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -93,7 +137,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! ./page1.js */ \"./src/page1.js\")\r\nlet str=\"index\"\r\nconsole.log(str)\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__(/*! ./page1.js */ \"./src/page1.js\")\nlet url=__webpack_require__(/*! ./index.css */ \"./src/index.css\")\nconsole.log(url)\nlet str=\"index\"\nconsole.log(str)\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -104,7 +148,7 @@ eval("__webpack_require__(/*! ./page1.js */ \"./src/page1.js\")\r\nlet str=\"ind
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("let str=\"page1\"\r\nconsole.log(str)\n\n//# sourceURL=webpack:///./src/page1.js?");
+eval("let str=\"page1\"\nconsole.log(str)\n\n//# sourceURL=webpack:///./src/page1.js?");
 
 /***/ })
 
