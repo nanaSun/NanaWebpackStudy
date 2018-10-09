@@ -1,3 +1,3 @@
-import str from "./page2.js"
+let str="page1"
 import $ from "jquery"
 export default str

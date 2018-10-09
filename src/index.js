@@ -1,5 +1,4 @@
-require("./page1.js")
-let url=require("./index.css")
-console.log(url)
-let str="index"
-console.log(str)
+import str from "./page1.js"
+import {$} from "jquery"
+import {$ as $1} from "zepto-modules"
+console.log(str,$,$1)
