@@ -1,3 +1,5 @@
 import str from "./page2.js"
-import $ from "jquery"
-export default str
+let a="ddddddd"
+let b="bbbbbbb"
+document.body.innerText=b
+export default a

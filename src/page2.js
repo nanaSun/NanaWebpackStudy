@@ -1,3 +1,4 @@
 let str="page1"
-import $ from "jquery"
+console.log("page2")
+console.log("page3")
 export default str
