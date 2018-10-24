@@ -22,7 +22,7 @@ module.exports={
                   {
                     loader: 'file-loader',
                     options: {
-                        useRelativePath:true,
+                        useRelativePath:false,
                         outputPath: 'images/',
                         name: '[name].[ext]'
                     }
@@ -46,7 +46,7 @@ module.exports={
                 use: [ {
                 loader: 'html-loader',
                 options: {
-                    root: path.resolve(__dirname, 'dist','images'),
+                    root: path.resolve(__dirname),
                     attrs: ['img:src'],
                     minimize: true,
                     removeComments: false,
