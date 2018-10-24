@@ -1,52 +1,77 @@
 const path=require("path")
-const webpack=require("webpack")
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const UglifyJsPlugin=require("uglifyjs-webpack-plugin")
-const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
-module.exports = {
+const HtmlWebpackPlugin = require('html-webpack-plugin'); 
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+console.log(MiniCssExtractPlugin.loader)
+//__dirname;
+module.exports={
     mode:"none",
-    //mode:"production",
-    
     entry:{
-        index:path.join(__dirname,"/src/index.js"),
-        page1:path.join(__dirname,"/src/page1.js"),
-        page2:path.join(__dirname,"/src/page2.js"),
-        client:['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true','webpack/hot/dev-server']
+        "index":path.resolve(__dirname,"src/scripts/index/index.js"),
+        "list":path.resolve(__dirname,"src/scripts/list/list.js"),
     },
     output:{
-        publicPath:"/"
+        path:path.resolve(__dirname,"dist"),
+        filename:"scripts/[name].js"
     },
-    //devtool: 'source-map',
-    optimization:{
-        flagIncludedChunks:true,
-        minimize: true,
+    //loader
+    module: {
+        rules: [
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                  {
+                    loader: 'file-loader',
+                    options: {
+                        useRelativePath:true,
+                        outputPath: 'images/',
+                        name: '[name].[ext]'
+                    }
+                  }
+                ]
+              },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        publicPath: '../'
+                    }
+                    },
+                    "css-loader"
+                ]
+            },
+            {
+                test: /\.html$/,
+                use: [ {
+                loader: 'html-loader',
+                options: {
+                    root: path.resolve(__dirname, 'dist','images'),
+                    attrs: ['img:src'],
+                    minimize: true,
+                    removeComments: false,
+                    collapseWhitespace: false
+                }
+                }],
+            }
+        ]
+        ,
     },
+    
     plugins: [
-        new HtmlWebpackPlugin(),
-        new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify("development") }),
-        //new webpack.optimize.ModuleConcatenationPlugin(),//???
-        new webpack.NoEmitOnErrorsPlugin(),
-        //new UglifyJsPlugin(),
-        //new webpack.FlagDependencyUsagePlugin(), 
-        //new webpack.optimize.OccurrenceOrderPlugin(), //https://webpack.js.org/plugins/internal-plugins/#occurenceorderplugin
-        new webpack.optimize.SideEffectsFlagPlugin(),
-        new webpack.HotModuleReplacementPlugin()
-    ],
-    devServer: {
-        contentBase: path.join(__dirname, 'dist'),
-        publicPath:"/",
-    },
-    // module: {
-    //     rules: [
-    //         {
-    //           test: /\.css$/,
-    //           use: [
-    //             { loader: 'style-loader/url'},
-    //             { loader: "file-loader" }
-    //            
-    //{ loader: 'css-loader',options: {modules: false}}
-    //           ]
-    //         }
-    //       ]
-    // }
-};
+        new HtmlWebpackPlugin({
+            filename: path.join(__dirname,'/dist/index.html'),
+            template: path.join(__dirname,'/src/templates/index.html'),
+            chunks: ["index"]
+        }),
+        new HtmlWebpackPlugin({
+            filename: path.join(__dirname,'/dist/list.html'),
+            template: path.join(__dirname,'/src/templates/list.html'),
+            chunks: ["list"]
+        }),
+        //css打包
+        new MiniCssExtractPlugin({
+            filename: "styles/[name].css"
+        })
+    ]
+}
