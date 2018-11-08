@@ -1,4 +1,5 @@
 const path=require("path")
+<<<<<<< HEAD
 const webpack=require("webpack")
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin=require("uglifyjs-webpack-plugin")
@@ -17,20 +18,31 @@ class ConsoleLogOnBuildWebpackPlugin {
   }
 }
 module.exports = {
+=======
+const HtmlWebpackPlugin = require('html-webpack-plugin'); 
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+console.log(MiniCssExtractPlugin.loader)
+//__dirname;
+module.exports={
+>>>>>>> 3a99ea6fc523f6ec16b13a5e0dce0935dc940311
     mode:"none",
-    //mode:"production",
-    
     entry:{
+<<<<<<< HEAD
         index:path.join(__dirname,"/src/index.js"),
         // //index:path.join(__dirname,"/src/index.js"),
         page1:path.join(__dirname,"/src/page1.js")
         // page2:path.join(__dirname,"/src/page2.js")
         // //client:[,'webpack/hot/dev-server']
+=======
+        "index":path.resolve(__dirname,"src/scripts/index/index.js"),
+        "list":path.resolve(__dirname,"src/scripts/list/list.js"),
+>>>>>>> 3a99ea6fc523f6ec16b13a5e0dce0935dc940311
     },
     output:{
-        filename: '[name].js',
-        path: __dirname + '/dist'
+        path:path.resolve(__dirname,"dist"),
+        filename:"scripts/[name].js"
     },
+<<<<<<< HEAD
     //devtool: 'source-map',
     // optimization:{
     //     flagIncludedChunks:true,
@@ -85,3 +97,67 @@ module.exports = {
           ]
     }
 };
+=======
+    //loader
+    module: {
+        rules: [
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                  {
+                    loader: 'file-loader',
+                    options: {
+                        useRelativePath:false,
+                        outputPath: 'images/',
+                        name: '[name].[ext]'
+                    }
+                  }
+                ]
+              },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                    loader: MiniCssExtractPlugin.loader,
+                    options: {
+                        publicPath: '../'
+                    }
+                    },
+                    "css-loader"
+                ]
+            },
+            {
+                test: /\.html$/,
+                use: [ {
+                loader: 'html-loader',
+                options: {
+                    root: path.resolve(__dirname),
+                    attrs: ['img:src'],
+                    minimize: true,
+                    removeComments: false,
+                    collapseWhitespace: false
+                }
+                }],
+            }
+        ]
+        ,
+    },
+    
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: path.join(__dirname,'/dist/index.html'),
+            template: path.join(__dirname,'/src/templates/index.html'),
+            chunks: ["index"]
+        }),
+        new HtmlWebpackPlugin({
+            filename: path.join(__dirname,'/dist/list.html'),
+            template: path.join(__dirname,'/src/templates/list.html'),
+            chunks: ["list"]
+        }),
+        //css打包
+        new MiniCssExtractPlugin({
+            filename: "styles/[name].css"
+        })
+    ]
+}
+>>>>>>> 3a99ea6fc523f6ec16b13a5e0dce0935dc940311

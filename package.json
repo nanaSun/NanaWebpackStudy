@@ -14,9 +14,15 @@
     "css-loader": "^1.0.0",
     "express": "^4.16.3",
     "file-loader": "^2.0.0",
+    "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+<<<<<<< HEAD
     "jest": "^23.6.0",
     "memory-fs": "^0.4.1",
+=======
+    "html-withimg-loader": "^0.1.16",
+    "mini-css-extract-plugin": "^0.4.4",
+>>>>>>> 3a99ea6fc523f6ec16b13a5e0dce0935dc940311
     "style-loader": "^0.23.0",
     "webpack": "^4.23.1",
     "webpack-cli": "^3.1.2",

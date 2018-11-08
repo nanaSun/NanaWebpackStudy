@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const {resolve} = require('path')
 const fs = require('fs')
 let webpackpath=resolve(__dirname, "node_modules/webpack");
@@ -66,3 +67,9 @@ test_array.forEach((str)=>{
 let serachstr="";
 search(test_array,test_obj,serachstr);
 console.log(JSON.stringify(test_obj));
+=======
+let {resolve}=require("path")
+console.log(resolve(__dirname,"node_modules","webpack-cli","bin","cli.js"))
+let webpath=resolve(__dirname,"node_modules","webpack-cli","bin","cli.js")
+require(webpath)
+>>>>>>> 3a99ea6fc523f6ec16b13a5e0dce0935dc940311
