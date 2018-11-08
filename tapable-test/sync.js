@@ -61,14 +61,16 @@ class WorkTask {
 		this.hooks.prepare.tap("turnOnComputer",()=>{
 			console.log("Computer is ready!")
 		})
-		this.hooks.working.tapAsync("powerpoint",(next)=>{
-			setTimeout(()=>{
-				console.log("powerpoint is making")
-				next();
-			},3000)
+		this.hooks.working.tapAsync("powerpointIsMaking",(next)=>{
+			console.log("powerpoint is making")
+			setTimeout(next,3000)
 		})
-		this.hooks.working.tapAsync("haveameeting",()=>{
-			console.log("meeting is going")
+		this.hooks.working.tapAsync("powerpointIsDone",(next)=>{
+			console.log("powerpoint is done")
+			next()
+		})
+		this.hooks.working.tapAsync("meetingGo",()=>{
+			console.log("It's time for meeting")
 		})
 	}
 	start(){
@@ -83,10 +85,29 @@ class WorkTask {
 class Activity {
 	constructor() {
 		this.hooks = {
+			goParty:new SyncBailHook(),
+			goHome:new SyncHook()
 		};
 	}
+	prepare(){
+		this.hooks.goParty.tap("happy",()=>{
+			console.log("happy party")
+		})
+		this.hooks.goParty.tap("unhappy",()=>{
+			console.log("unhappy")
+			return "go home"
+		})
+		this.hooks.goParty.tap("play",()=>{
+			console.log("continue playing")
+		})
+		this.hooks.goHome.tap("goHome",()=>{
+			console.log("I'm going to sleep")
+		})
+	}
 	start(){
-
+		this.hooks.goParty.call(()=>{
+			this.hooks.goHome.call()
+		})
 	}
 }
 /**
@@ -119,14 +140,17 @@ class MyDaily {
 		this.hooks.atWork.tap("atWork",(workTask)=>{
 			workTask.start()
 		})
+		this.hooks.afterWork.tap("day ends",(activity)=>{
+			activity.prepare()
+		})
 		this.hooks.afterWork.tap("activity",(activity)=>{
-			console.log("activity")
+			activity.start()
 		})
 	}
 	run(callback){
 		this.hooks.beforeWork.call(this.getUp)
 		this.hooks.atWork.call(this.workTask)
-		//this.hooks.activity.call(this.activity)
+		this.hooks.activity.call(this.activity)
 	}
 }
 /**
