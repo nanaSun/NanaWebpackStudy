@@ -1,8 +1,3 @@
-import str from "./page1.js"
-import {$} from "jquery"
-import {$ as $1} from "zepto-modules"
-console.log("kkkkaa")
-
-if(module.hot){
-    module.hot.accept();
-}
+import str from "./page2.js"
+import "./index.css"
+console.log(str)
